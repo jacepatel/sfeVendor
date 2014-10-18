@@ -16,8 +16,8 @@ angular
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       })
-      .when('/openShop', {
-        templateUrl: 'views/openShop.html',
+      .when('/openshop', {
+        templateUrl: 'views/openshop.html',
         controller: 'OpenShopCtrl'
 
       })
@@ -26,6 +26,12 @@ angular
         controller: 'AboutCtrl'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/login'
       });
+  }).run(function($location, $rootScope){
+    $rootScope.user = null;
+    $rootScope.logOut = function(){
+      $rootScope.user = null;
+      $location.path('/login');
+    };
   });

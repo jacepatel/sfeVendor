@@ -8,10 +8,8 @@
  * Controller of the sfeVendorApp
  */
 angular.module('sfeVendorApp')
-  .controller('OpenShopCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('OpenShopCtrl', function ($rootScope, $scope, $http, $location)) {
+    $scope.OpenTheShop = function(){
+      //Set the shop to open with the variables set
+    }
+  };

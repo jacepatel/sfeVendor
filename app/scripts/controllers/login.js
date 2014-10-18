@@ -21,7 +21,7 @@
 
   			$http.get('dataset/user.json').success(function(data) {
     			$rootScope.user = data;
-      			$location.path('/openShop');
+      			$location.path('/openshop');
   			});
   		};
   });

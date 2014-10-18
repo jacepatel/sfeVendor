@@ -22,14 +22,6 @@
 
     <!-- Add your site or application content here -->
     <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
-        </ul>
-        <h3 class="text-muted">sfeVendor</h3>
-      </div>
 
       <div ng-view=""></div>
 
@@ -68,6 +60,9 @@
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src='bower_components/lodash/dist/lodash.js'></script>
+    <script src='bower_components/bluebird/js/browser/bluebird.js'></script>
+    <script src='bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -75,6 +70,8 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/openshop.js"></script>
         <!-- endbuild -->
 </body>
 </html>
