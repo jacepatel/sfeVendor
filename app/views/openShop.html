@@ -23,7 +23,7 @@
     ng-mouseenter="active = true"
     ng-mouseleave="active = false"
     class = "list-group-item"
-    ng-class="{true: 'active', false: 'inactive'}[item.isActive]">{{ item.name }}
+    ng-class="{true: 'list-group-item-success', false: 'list-group-item-danger'}[item.isActive]">{{ item.name }}
 	</li>
 </ul>
 </div>

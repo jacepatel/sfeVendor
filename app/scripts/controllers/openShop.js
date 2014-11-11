@@ -68,6 +68,8 @@ angular.module('sfeVendorApp')
 
     $scope.OpenTheShop = function(){
       //Set the shop to open with the variables set
+      //Proceed to the currentorders page
+      $location.path('/currentorders');
     };
 //THE FOLLOWING IS CONTROL FOR THE NG-REPEAT OF MENU ITEMS AVAILABLE
 }).controller('MenuItemController', function( $scope ) {

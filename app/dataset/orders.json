@@ -1,0 +1,59 @@
+{
+	"orders":[
+		{
+			"orderid":1,
+			"userid":1,
+			"items":[{
+						"id":2,
+						"menuId":1,
+						"name":"Sprite",
+						"description":"A Lemon.",
+						"price":2.7,
+						"qty": 2,
+						"discount":0
+					},
+					{
+						"id":3,
+						"menuId":1,
+						"name":"Coke",
+						"description":"A Banana.",
+						"price":2.7,
+						"qty": 4,
+						"discount":0
+					}],
+			"orderTimePlaced":"20:32:31 30/11",
+			"totalPrice":2.5,
+			"readyTime":"",
+			"completeTime":"",
+			"orderStatus":1
+		},
+		{
+			"orderid":2,
+			"userid":2,
+			"items":[{
+						"id":2,
+						"menuId":1,
+						"name":"Sprite",
+						"description":"A Lemon.",
+						"price":2.7,
+						"qty": 2,
+						"discount":0
+					},
+					{
+						"id":3,
+						"menuId":1,
+						"name":"Coke",
+						"description":"A Banana.",
+						"price":2.7,
+						"qty": 4,
+						"discount":0
+					}],
+			"orderTimePlaced":"20:32:55 30/11",
+			"totalPrice":2.5,
+			"readyTime":"",
+			"completeTime":"",
+			"orderStatus":1
+		}
+
+	]
+}

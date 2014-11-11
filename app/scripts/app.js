@@ -21,6 +21,11 @@ angular
         controller: 'OpenShopCtrl'
 
       })
+      .when('/currentorders', {
+        templateUrl: 'views/currentorders.html',
+        controller: 'CurrentOrdersCtrl'
+
+      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
