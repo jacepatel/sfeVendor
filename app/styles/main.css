@@ -59,6 +59,8 @@ body {
   margin-top: 28px;
 }
 
+/* Section for menu item related formatting */
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   /* Remove the padding we set earlier */

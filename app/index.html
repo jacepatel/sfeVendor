@@ -1,5 +1,8 @@
 <!doctype html>
 <html class="no-js">
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXxlIQE_baTY18opP79TFol5Ck40xQyP8">
+        </script>
   <head>
     <meta charset="utf-8">
     <title></title>
@@ -32,6 +35,7 @@
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <!--
      <script>
        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -41,7 +45,7 @@
        ga('create', 'UA-XXXXX-X');
        ga('send', 'pageview');
     </script>
-
+  -->
     <!-- build:js(.) scripts/oldieshim.js -->
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -60,18 +64,17 @@
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src='bower_components/lodash/dist/lodash.js'></script>
-    <script src='bower_components/bluebird/js/browser/bluebird.js'></script>
-    <script src='bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/openshop.js"></script>
+
+
         <!-- endbuild -->
+
 </body>
 </html>

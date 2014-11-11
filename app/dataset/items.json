@@ -1,0 +1,20 @@
+{
+	"items":[
+		{
+			"id":1,
+			"menuId":1,
+			"name":"Coke",
+			"description":"A block of cheese.",
+			"price":2.5,
+      "isActive":true
+		},
+		{
+			"id":2,
+			"menuId":1,
+			"name":"Sprite",
+			"description":"A tomato.",
+			"price":2.7,
+      "isActive":false
+		}
+	]
+}

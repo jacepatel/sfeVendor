@@ -3,5 +3,7 @@
 "firstName":"Michael",
 "lastName":"Sive",
 "email":"mikesive@gmail.com",
-"birthDate":655689600000
+"birthDate":655689600000,
+"currentLat":-27.4587179,
+"currentLong":153.0494161
 }

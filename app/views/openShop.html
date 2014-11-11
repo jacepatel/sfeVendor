@@ -1,8 +1,34 @@
+
 <div class="header">
         <div ng-include src="'partials/header.html'"></div>
         <h3 class="text-muted">Open Shop</h3>
 </div>
-<div class="jumbotron">
+
+<div class="jumbotron" id='openshop-map' style='height: 300px;'>
+</div>
+
+<div class="jumbotron" id='address-inputs'>
+  <p class="lead">
+<input id='inpMapAddress' type='text' size='40' placeholder='Google Maps Address' /><br><br>
+<input id='inpCustomAddress' type='text' size='40' placeholder='Optional Address Instructions' />
+</p>
+</div>
+
+<div class="jumbotron" id="select-menu-items">
+<ul class="list-group" >
+	<li
+    ng-repeat="item in items"
+    ng-controller="MenuItemController"
+    ng-click="toggleSelection()"
+    ng-mouseenter="active = true"
+    ng-mouseleave="active = false"
+    class = "list-group-item"
+    ng-class="{true: 'active', false: 'inactive'}[item.isActive]">{{ item.name }}
+	</li>
+</ul>
+</div>
+
+<div class="jumbotron" id='openshop-options'>
   <p class="lead">
     <h3 class="test-muted">Fill in the this for opening the shop</h3>
   </p>
