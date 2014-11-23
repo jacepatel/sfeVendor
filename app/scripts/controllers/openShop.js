@@ -8,7 +8,7 @@
  * Controller of the sfeVendorApp
  */
 angular.module('sfeVendorApp')
-  .controller('OpenShopCtrl',function($rootScope, $scope, $location, $window, $http) {
+  .controller('OpenShopCtrl',function($rootScope, $scope, $location, $window, $http, sfeAPI) {
 
     //Get Co-Ords and call initialize map
 
@@ -53,31 +53,32 @@ angular.module('sfeVendorApp')
         });
       });
 
-      //The address elemnts on the page
-      // angular.element('#inpMapAddress').val();
-      // angular.element('#inpCustomAddress').val();
-
-      //get the address populated
-      //Open the shop action
 
     //Get the menu items
-    $http.get('dataset/items.json').success(function(data) {
-    		$scope.items = data.items;
+    sfeAPI.getMyMenu().success(function(data) {
+      $scope.items = data.items;
     });
 
 
     $scope.OpenTheShop = function(){
+      //Update my menu
+      //Open a session
+
       //Set the shop to open with the variables set
       //Proceed to the currentorders page
       $location.path('/currentorders');
     };
+
 //THE FOLLOWING IS CONTROL FOR THE NG-REPEAT OF MENU ITEMS AVAILABLE
-}).controller('MenuItemController', function( $scope ) {
+}).controller('MenuItemController', function($scope, sfeAPI) {
 
 
   //This is called on the ng-click for list items
   $scope.toggleSelection = function() {
     $scope.item.isActive = !$scope.item.isActive;
+    //Some error handling required around this maybe, shouldn't have errors though
+    debugger;
+    sfeAPI.updateMyMenu($scope.item);
   };
 
 

@@ -3,7 +3,7 @@
 		{
 			"id":1,
 			"menuId":1,
-			"name":"Coke",
+			"name":"Teddy Bears",
 			"description":"A block of cheese.",
 			"price":2.5,
       "isActive":true
@@ -11,10 +11,26 @@
 		{
 			"id":2,
 			"menuId":1,
-			"name":"Sprite",
+			"name":"Ice (Drug Ice)",
 			"description":"A tomato.",
 			"price":2.7,
       "isActive":false
+		},
+		{
+			"id":3,
+			"menuId":1,
+			"name":"Friendship Bracelets",
+			"description":"It's cheap.",
+			"price":20,
+			"isActive":false
+		},
+		{
+			"id":4,
+			"menuId":1,
+			"name":"Cornflakes High Quality Corn",
+			"description":"It's the best!",
+			"price":20,
+			"isActive":false
 		}
 	]
 }

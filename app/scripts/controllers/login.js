@@ -17,7 +17,7 @@
 
   			// $http.post('/session', userDetails).success(function(data) {
     	// 		$scope.user = data;
-  			// });
+  			// });f
 
         //Set the User lat and long
         /*

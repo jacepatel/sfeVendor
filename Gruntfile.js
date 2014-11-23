@@ -66,7 +66,7 @@ module.exports = function (grunt) {
     // The actual grunt server settings
     connect: {
       options: {
-        port: 8050,
+        port: 8000,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: 'localhost',
         livereload: 35730
@@ -88,7 +88,7 @@ module.exports = function (grunt) {
       },
       test: {
         options: {
-          port: 8051,
+          port: 8000,
           middleware: function (connect) {
             return [
               connect.static('.tmp'),
