@@ -5,8 +5,8 @@
 
 <div class="jumbotron">
   <p class="lead">
-    <input id='emailField' type='text' size='40' placeholder='email' /><br><br>
-    <input id='passwordField' type='password' size='40' placeholder='password' />
+    <input ng-model='email' id='emailField' type='text' placeholder='email' /><br><br>
+    <input ng-model='password' id='passwordField' type='password' placeholder='password' />
   </p>
   <p><div class="btn btn-lg btn-success" ng-click="loginSubmit()">Login</div></p>
 </div>

@@ -8,15 +8,14 @@
  * Controller of the sfeVendorApp
  */
 angular.module('sfeVendorApp')
-  .controller('OpenShopCtrl',function($rootScope, $scope, $location, $window, $http, sfeAPI) {
+  .controller('OpenShopCtrl',function($rootScope, $scope, $location, $window, $http, sfeAPI, credStore) {
 
     //Get Co-Ords and call initialize map
 
     //This gets user data, we need this in a service
-    var user = $rootScope.user;
-
+    var user = credStore.getCurrentUser();
     //Sets the current location from the user update at login
-    var currentLocation = new google.maps.LatLng(user.currentLat, user.currentLong);
+    var currentLocation = new google.maps.LatLng(user.lat, user.lng);
 
     //map options
     var mapOptions = {

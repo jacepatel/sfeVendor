@@ -19,7 +19,7 @@ angular.module('sfeVendorApp').factory('sfeAPI', function($http, $location, cred
         }
         else {
           //DO SOMETHING HERE
-          //alert(data.result);
+          alert(data.result);
         }
       });
     }
