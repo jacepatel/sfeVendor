@@ -10,63 +10,101 @@
 angular.module('sfeVendorApp')
   .controller('OpenShopCtrl',function($rootScope, $scope, $location, $window, $http, sfeAPI, credStore) {
 
-    //Get Co-Ords and call initialize map
+    //This is the time picker object
+    $scope.mytime = new Date();
 
-    //This gets user data, we need this in a service
     var user = credStore.getCurrentUser();
-    //Sets the current location from the user update at login
-    var currentLocation = new google.maps.LatLng(user.lat, user.lng);
 
-    //map options
-    var mapOptions = {
-        center: currentLocation,
-        zoom: 12
-      };
-
-    //initiate map
-    var map = new google.maps.Map(document.getElementById('openshop-map'), mapOptions);
-
-    //geocoder to get address information from location
-    var geocoder = new google.maps.Geocoder();
-    //add the final position marker
-    var marker = new google.maps.Marker({
-        position: currentLocation,
-        map: map,
-        title:'You Here Yo!',
-        draggable:true
+    //Gets the current position of user, then initializes the map
+    window.navigator.geolocation.getCurrentPosition(function(pos){
+      var crds = pos.coords;
+      var lat = crds.latitude;
+      var lng = crds.longitude;
+      initializeMap(lat, lng);
     });
 
-    //This add a listener to check for drag movements, then updates the address box
-      google.maps.event.addListener(marker, 'dragend', function() {
-        map.setCenter(marker.getPosition());
-        geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
-          if (status === google.maps.GeocoderStatus.OK) {
-            if (results[1]) {
-              angular.element('#inpMapAddress').val(results[0].formatted_address);
-            }
-          } else {
-            angular.element('#inpMapAddress').val('Unable to find address');
-            //write status to the error log
-            //alert("Geocoder failed due to: " + status);
+    //Parses co-ords and updates the input box with current address
+    function updateAdress(currentPosition) {
+      var geocoder = new google.maps.Geocoder();
+      geocoder.geocode({'latLng': currentPosition}, function(results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+          if (results[1]) {
+            $scope.$apply(function () {
+              $scope.inpMapAddress = results[0].formatted_address;
+            });
           }
-        });
+        } else {
+          $scope.$apply(function () {
+            $scope.inpMapAddress = 'Unable to find address';
+          });
+          //write status to the error log
+          //alert("Geocoder failed due to: " + status);
+        }
+      });
+    };
+
+
+
+    //initiate map
+    function initializeMap(lat, lng) {
+      var currentLocation = new google.maps.LatLng(lat, lng);
+
+      //map options
+      var mapOptions = {
+          center: currentLocation,
+          zoom: 18
+        };
+
+      var map = new google.maps.Map(document.getElementById('openshop-map'), mapOptions);
+      //add the final position marker
+      var marker = new google.maps.Marker({
+          position: currentLocation,
+          map: map,
+          title:'You Here Yo!',
+          draggable:true
       });
 
 
+
+      updateAdress(currentLocation);
+      //This add a listener to check for drag movements, then updates the address box
+      google.maps.event.addListener(marker, 'dragend', function() {
+        map.setCenter(marker.getPosition());
+        updateAdress(marker.getPosition());
+      });
+    }
     //Get the menu items
+    //YOU NEED TO ADD IN HANDLING FOR THE TRUCK ID
     sfeAPI.getMyMenu().success(function(data) {
       $scope.items = data.items;
     });
 
 
     $scope.OpenTheShop = function(){
-      //Update my menu
-      //Open a session
+      //Open a truck session
+      //build the open the shop object
+      var d = new Date();
+      var startTime = d.getTime();
+      var closeTime = $scope.mytime.getTime();
 
-      //Set the shop to open with the variables set
-      //Proceed to the currentorders page
-      $location.path('/currentorders');
+      var truckSessionJson = JSON.stringify(
+      {
+        "truckId": String(1),
+        "startTime": String(startTime),
+        "endTime": String(closeTime),
+        "lat": String(marker.getPosition().lat()),
+        "lng": String(marker.getPosition().lng()).substring(0, 10),
+        "locationDirections": String($scope.inpCustomAddress),
+        "isActive": "true"
+      });
+
+      sfeAPI.openMyShop(truckSessionJson).success(function(data) {
+        $rootScope.trucksession = data;
+      }).error(function(data) {
+        //Add some error handling in case of error
+      });
     };
+
 
 //THE FOLLOWING IS CONTROL FOR THE NG-REPEAT OF MENU ITEMS AVAILABLE
 }).controller('MenuItemController', function($scope, sfeAPI) {
@@ -76,7 +114,6 @@ angular.module('sfeVendorApp')
   $scope.toggleSelection = function() {
     $scope.item.isActive = !$scope.item.isActive;
     //Some error handling required around this maybe, shouldn't have errors though
-    debugger;
     sfeAPI.updateMyMenu($scope.item);
   };
 

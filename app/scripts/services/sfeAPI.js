@@ -31,9 +31,25 @@ angular.module('sfeVendorApp').factory('sfeAPI', function($http, $location, cred
         getMyMenu: function() {
           return $http.get('http://api.streeteats.com.au/trucks/1/menu');
         },
+
         updateMyMenu: function(item) {
-          debugger;
-          return $http.post('http://api.streeteats.com.au/items/' + item.itemId, item);
+          var jsonItem = JSON.stringify(
+          {
+          	"createdDate": String(item.createdDate),
+          	"description": item.description,
+          	"isActive": String(item.isActive),
+          	"itemId": String(item.itemId),
+          	"maxQuantity": String(item.maxQuantity),
+          	"name": String(item.name),
+          	"price": String(item.price),
+          	"truckId": String(item.truckId)
+          });
+          return $http.post('http://api.streeteats.com.au/items/' + item.itemId, jsonItem);
+        },
+
+        openMyShop: function(trucksession) {
+          $http.post('http://api.streeteats.com.au/trucksession', trucksession);
+          return $http.post('http://api.streeteats.com.au/trucksession', trucksession);
         }
   };
 

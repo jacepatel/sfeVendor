@@ -8,9 +8,10 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui.bootstrap'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/login', {
         templateUrl: 'views/login.html',
@@ -33,6 +34,9 @@ angular
       .otherwise({
         redirectTo: '/login'
       });
+      $httpProvider.defaults.useXDomain = true;
+      $httpProvider.defaults.withCredentials = true;
+      delete $httpProvider.defaults.headers.common['X-Requested-With'];
   }).run(function($location, $rootScope){
     $rootScope.user = null;
     $rootScope.logOut = function(){

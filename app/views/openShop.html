@@ -1,4 +1,5 @@
 
+
 <div class="header">
         <div ng-include src="'partials/header.html'"></div>
         <h3 class="text-muted">Open Shop</h3>
@@ -9,8 +10,8 @@
 
 <div class="jumbotron" id='address-inputs'>
   <p class="lead">
-<input id='inpMapAddress' type='text' size='40' placeholder='Google Maps Address' /><br><br>
-<input id='inpCustomAddress' type='text' size='40' placeholder='Optional Address Instructions' />
+<input ng-model= 'inpMapAddress' id='inpMapAddress' type='text' size='40' placeholder='Google Maps Address' /><br><br>
+<input ng-model='inpCustomAddress' id='inpCustomAddress' type='text' size='40' placeholder='Optional Address Instructions' />
 </p>
 </div>
 
@@ -27,7 +28,10 @@
 	</li>
 </ul>
 </div>
-
+<div class="jumbotron" id="select-close-time">
+      <timepicker ng-model="mytime" hour-step="1" minute-step="10" show-meridian="false" align="center"></timepicker>
+<pre class="alert alert-info">Close Time Is Set To: {{mytime | date:'shortTime' }}</pre>
+</div>
 <div class="jumbotron" id='openshop-options'>
   <p class="lead">
     <h3 class="test-muted">Fill in the this for opening the shop</h3>
