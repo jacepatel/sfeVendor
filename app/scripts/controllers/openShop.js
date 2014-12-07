@@ -12,8 +12,15 @@ angular.module('sfeVendorApp')
 
     //This is the time picker object
     $scope.mytime = new Date();
+    $scope.mytime.setMinutes(Math.round($scope.mytime.getMinutes() / 10) * 10);
+    $scope.mytime.setHours($scope.mytime.getHours()+3);
+
+    //The fucking place to benigga
+    //$scope.gPlace = '';
+    $scope.inpMapAdress = '';
 
     var user = credStore.getCurrentUser();
+    var geocoder = new google.maps.Geocoder();
 
     //Gets the current position of user, then initializes the map
     window.navigator.geolocation.getCurrentPosition(function(pos){
@@ -25,7 +32,6 @@ angular.module('sfeVendorApp')
 
     //Parses co-ords and updates the input box with current address
     function updateAdress(currentPosition) {
-      var geocoder = new google.maps.Geocoder();
       geocoder.geocode({'latLng': currentPosition}, function(results, status) {
         if (status === google.maps.GeocoderStatus.OK) {
           if (results[1]) {
@@ -64,9 +70,23 @@ angular.module('sfeVendorApp')
           draggable:true
       });
 
-
-
       updateAdress(currentLocation);
+
+      var inputLocation = new google.maps.places.Autocomplete(document.getElementById('inpMapAddress'));
+      google.maps.event.addListener(inputLocation, 'place_changed', function() {
+        $scope.$apply(function() {
+          var place = inputLocation.getPlace();
+          if (!place.geometry) {
+            return;
+          }
+          else {
+            map.setCenter(place.geometry.location);
+            marker.setPosition(place.geometry.location);
+          }
+          model.$setViewValue(document.getElementById('inpMapAddress'));
+        });
+      });
+
       //This add a listener to check for drag movements, then updates the address box
       google.maps.event.addListener(marker, 'dragend', function() {
         map.setCenter(marker.getPosition());
@@ -78,7 +98,6 @@ angular.module('sfeVendorApp')
     sfeAPI.getMyMenu().success(function(data) {
       $scope.items = data.items;
     });
-
 
     $scope.OpenTheShop = function(){
       //Open a truck session

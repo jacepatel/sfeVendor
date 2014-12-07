@@ -1,40 +1,46 @@
 
 
-<div class="header">
+<div class="header" style='color: #ffffff;'>
         <div ng-include src="'partials/header.html'"></div>
-        <h3 class="text-muted">Open Shop</h3>
+        <h3>Open The Shop</h3>
 </div>
 
-<div class="jumbotron" id='openshop-map' style='height: 300px;'>
-</div>
-
-<div class="jumbotron" id='address-inputs'>
+<div class="displaybubble">
   <p class="lead">
-<input ng-model= 'inpMapAddress' id='inpMapAddress' type='text' size='40' placeholder='Google Maps Address' /><br><br>
-<input ng-model='inpCustomAddress' id='inpCustomAddress' type='text' size='40' placeholder='Optional Address Instructions' />
-</p>
+    <h3>PUT YOURSELF ON THE MAP!</h3>
+  </p>
+  <div id='openshop-map' style='height: 300px;'>
+  </div>
+<input ng-model= 'inpMapAddress' id='inpMapAddress' type='text' placeholder='Google Maps Address' style='width: 100%; padding: 6px; margin-top: 6px;'/><br>
+<input ng-model='inpCustomAddress' id='inpCustomAddress' type='text' style='width: 100%; padding: 6px; margin-top: 6px;' placeholder='Optional Address Instructions (eg. Behind the bushes)' />
 </div>
 
-<div class="jumbotron" id="select-menu-items">
-<ul class="list-group" >
+<div class="displaybubble" id="select-menu-items" style='color: #9d5150; background-color: #ffffff;'>
+  <p class="lead">
+    <h3 class="test-muted">WHAT'S COOKING?</h3>
+  </p>
+<ul class="menu-group">
 	<li
     ng-repeat="item in items"
     ng-controller="MenuItemController"
     ng-click="toggleSelection()"
-    ng-mouseenter="active = true"
-    ng-mouseleave="active = false"
-    class = "list-group-item"
-    ng-class="{true: 'list-group-item-success', false: 'list-group-item-danger'}[item.isActive]">{{ item.name }}
+    class = "menu-group-item"
+    style = "cursor: pointer;"
+    ng-class="{true: 'menu-group-item-success', false: 'menu-group-item-danger'}[item.isActive]">{{ item.name }}
 	</li>
 </ul>
 </div>
-<div class="jumbotron" id="select-close-time">
-      <timepicker ng-model="mytime" hour-step="1" minute-step="10" show-meridian="false" align="center"></timepicker>
-<pre class="alert alert-info">Close Time Is Set To: {{mytime | date:'shortTime' }}</pre>
-</div>
-<div class="jumbotron" id='openshop-options'>
+<div class="displaybubble" id="select-close-time">
   <p class="lead">
-    <h3 class="test-muted">Fill in the this for opening the shop</h3>
+    <h3 class="test-muted">WHEN CAN WE STOP...</h3>
   </p>
-  <p><div class="btn btn-lg btn-success" ng-click="OpenTheShop()">Open The Shop</div></p>
+      <timepicker ng-model="mytime" hour-step="1" minute-step="10" show-meridian="false" align="center"></timepicker>
+</div>
+<div class="displaybubble" id="selected-time">
+<span style="font-size: 18px; color: #ffffff;">
+Close Time Is Set To: <span style="font-weight: bold;">{{mytime | date:'shortTime' }}</span>
+</span>
+</div>
+<div class="displaybubble" id='openshop-options' style='padding: 0px;'>
+  <div class="btn-proceed" style='width: 100%; cursor: pointer;' ng-click="OpenTheShop()">OKAY LETS SELL STUFF!</div>
 </div>

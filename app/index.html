@@ -28,9 +28,6 @@
 
       <div ng-view=""></div>
 
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
     </div>
 
 
@@ -75,10 +72,12 @@
         <script src="scripts/controllers/currentorders.js"></script>
         <script src="scripts/services/sfeAPI.js"></script>
         <script src="scripts/services/credStore.js"></script>
+        <script src="scripts/directives/googleplace.js"></script>
 
 
         <!-- endbuild -->
         <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
 
 </body>
 </html>

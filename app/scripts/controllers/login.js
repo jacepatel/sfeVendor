@@ -10,6 +10,7 @@
   angular.module('sfeVendorApp')
   .controller('LoginCtrl', function($rootScope, $scope, sfeAPI) {
 
+      $scope.email = '';
   		$scope.loginSubmit = function(){
   			sfeAPI.authenticate($scope.email, $scope.password);
   		};
