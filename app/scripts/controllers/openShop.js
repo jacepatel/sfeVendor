@@ -15,6 +15,8 @@ angular.module('sfeVendorApp')
     $scope.mytime.setMinutes(Math.round($scope.mytime.getMinutes() / 10) * 10);
     $scope.mytime.setHours($scope.mytime.getHours()+3);
 
+    $scope.currentLat = '';
+    $scope.currentLng = '';
     //The fucking place to benigga
     //$scope.gPlace = '';
     $scope.inpMapAdress = '';
@@ -25,9 +27,9 @@ angular.module('sfeVendorApp')
     //Gets the current position of user, then initializes the map
     window.navigator.geolocation.getCurrentPosition(function(pos){
       var crds = pos.coords;
-      var lat = crds.latitude;
-      var lng = crds.longitude;
-      initializeMap(lat, lng);
+      $scope.currentLat = crds.latitude;
+      $scope.currentLng = crds.longitude;
+      initializeMap($scope.currentLat, $scope.currentLng);
     });
 
     //Parses co-ords and updates the input box with current address
@@ -82,6 +84,8 @@ angular.module('sfeVendorApp')
           else {
             map.setCenter(place.geometry.location);
             marker.setPosition(place.geometry.location);
+            $scope.currentLat = marker.getPosition().lat();
+            $scope.currentLng = marker.getPosition().lng();
           }
           model.$setViewValue(document.getElementById('inpMapAddress'));
         });
@@ -91,6 +95,8 @@ angular.module('sfeVendorApp')
       google.maps.event.addListener(marker, 'dragend', function() {
         map.setCenter(marker.getPosition());
         updateAdress(marker.getPosition());
+        $scope.currentLat = marker.getPosition().lat();
+        $scope.currentLng = marker.getPosition().lng();
       });
     }
     //Get the menu items
@@ -111,14 +117,15 @@ angular.module('sfeVendorApp')
         "truckId": String(1),
         "startTime": String(startTime),
         "endTime": String(closeTime),
-        "lat": String(marker.getPosition().lat()),
-        "lng": String(marker.getPosition().lng()).substring(0, 10),
+        "lat": String($scope.currentLat).substring(0, 12),
+        "lng": String($scope.currentLng).substring(0, 12),
         "locationDirections": String($scope.inpCustomAddress),
         "isActive": "true"
       });
 
       sfeAPI.openMyShop(truckSessionJson).success(function(data) {
         $rootScope.trucksession = data;
+        $location.path('/currentorders');
       }).error(function(data) {
         //Add some error handling in case of error
       });

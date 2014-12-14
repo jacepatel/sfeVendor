@@ -9,7 +9,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'emguo.poller'
   ])
   .config(function ($routeProvider, $httpProvider) {
     $routeProvider
@@ -37,7 +38,8 @@ angular
       $httpProvider.defaults.useXDomain = true;
       $httpProvider.defaults.withCredentials = true;
       delete $httpProvider.defaults.headers.common['X-Requested-With'];
-  }).run(function($location, $rootScope){
+  })
+  .run(function($location, $rootScope){
     $rootScope.user = null;
     $rootScope.logOut = function(){
       $rootScope.user = null;

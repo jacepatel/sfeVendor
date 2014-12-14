@@ -29,6 +29,9 @@ angular.module('sfeVendorApp').factory('sfeAPI', function($http, $location, cred
 
         authenticate: authenticate,
         getMyMenu: function() {
+
+          //Remember you need to change the vendor id in the path here
+          //truckId
           return $http.get('http://api.streeteats.com.au/trucks/1/menu');
         },
 
@@ -48,9 +51,17 @@ angular.module('sfeVendorApp').factory('sfeAPI', function($http, $location, cred
         },
 
         openMyShop: function(trucksession) {
-          $http.post('http://api.streeteats.com.au/trucksession', trucksession);
           return $http.post('http://api.streeteats.com.au/trucksession', trucksession);
+        },
+
+        getMyCurrentOrders: function(truckSessionId) {
+          ///trucksession/:truckSessionId/activeOrders
+          return $http.get('http://api.streeteats.com.au/trucksession/'+ truckSessionId +'/activeOrders', {cache:false});
+        },
+        progressOrderStatus: function(orderId) {
+          return $http.get('http://api.streeteats.com.au/orders/updatestatus/'+ orderId, {cache:false});
         }
+
   };
 
 });
