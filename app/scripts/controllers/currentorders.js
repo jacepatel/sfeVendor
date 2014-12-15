@@ -13,13 +13,18 @@ angular.module('sfeVendorApp')
     //This gets user data, we need this in a service
     //var user = $rootScope.user;
     //Get the order items
-    sfeAPI.getMyCurrentOrders($rootScope.trucksession.truckSessionId).success(function(data) {
+
+    //var truckSessionId = $rootScope.trucksession.truckSessionId;
+
+    var truckSessionId = 541;
+
+    sfeAPI.getMyCurrentOrders().success(function(data) {
       $scope.currentOrders = data.orders;
     });
 
-    $scope.currentOrders = $http.get('/dataset/orders.json').success(function(data) {
-      $scope.currentOrders = data.orders;
-    });
+    // $scope.currentOrders = $http.get('/dataset/orders.json').success(function(data) {
+    //   $scope.currentOrders = data.orders;
+    // });
 
     var poll = function() {
       $timeout(function() {
