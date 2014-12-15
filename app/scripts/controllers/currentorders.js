@@ -43,11 +43,11 @@ angular.module('sfeVendorApp')
     switch($scope.order.orderStatus) {
     case 1:
         debugger;
-        sfeAPI.progressOrderStatus($scope.order.orderId).success(function(data) {
-          $scope.order.errorMessage = data.result;
-          //For this, the order has definitely progressed, its just there may be an error msg
-          //Come up with a way to display this on the screen.
-        });
+        // sfeAPI.progressOrderStatus($scope.order.orderId).success(function(data) {
+        //   $scope.order.errorMessage = data.result;
+        //   //For this, the order has definitely progressed, its just there may be an error msg
+        //   //Come up with a way to display this on the screen.
+        // });
         $scope.order.orderStatus = 2;
         break;
     case 2:

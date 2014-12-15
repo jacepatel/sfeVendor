@@ -328,6 +328,9 @@ p {
   font-weight: 500;
   background-color: #d7d7d7;
 }
+.displaybubblemenu.inactive {
+  background-color: #e2cbcb;
+}
 .displaybubblemenu h3,
 
 .displaybubblemenu .h3 {
