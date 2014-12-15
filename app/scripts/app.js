@@ -9,8 +9,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ui.bootstrap',
-    'emguo.poller'
+    'ui.bootstrap'
   ])
   .config(function ($routeProvider, $httpProvider) {
     $routeProvider
