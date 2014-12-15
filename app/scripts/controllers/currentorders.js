@@ -13,26 +13,26 @@ angular.module('sfeVendorApp')
     //This gets user data, we need this in a service
     //var user = $rootScope.user;
     //Get the order items
-    // sfeAPI.getMyCurrentOrders($rootScope.trucksession.truckSessionId).success(function(data) {
-    //   $scope.currentOrders = data.orders;
-    // });
+    sfeAPI.getMyCurrentOrders($rootScope.trucksession.truckSessionId).success(function(data) {
+      $scope.currentOrders = data.orders;
+    });
 
     $scope.currentOrders = $http.get('/dataset/orders.json').success(function(data) {
       $scope.currentOrders = data.orders;
     });
 
-    // var poll = function() {
-    //   $timeout(function() {
-    //       sfeAPI.getMyCurrentOrders($rootScope.trucksession.truckSessionId).success(function(data) {
-    //         $scope.currentOrders = data.orders;
-    //         debugger;
-    //
-    //       });
-    //       poll();
-    //   }, 15000);
-    // };
-    //
-    // poll();
+    var poll = function() {
+      $timeout(function() {
+          sfeAPI.getMyCurrentOrders($rootScope.trucksession.truckSessionId).success(function(data) {
+            $scope.currentOrders = data.orders;
+            debugger;
+
+          });
+          poll();
+      }, 15000);
+    };
+
+    poll();
 
 
 //THE FOLLOWING IS CONTROL FOR THE NG-REPEAT OF THE CURRENT ORDER ITEM

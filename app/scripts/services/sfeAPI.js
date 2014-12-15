@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('sfeVendorApp').factory('sfeAPI', function($http, $location, credStore) {
-  var domain = 'http://api.streeteats.com.au';
+  var domain = 'https://evening-scrubland-5159.herokuapp.com';
 
     function authenticate(user, pass){
       var url = domain + '/session';
@@ -32,7 +32,7 @@ angular.module('sfeVendorApp').factory('sfeAPI', function($http, $location, cred
 
           //Remember you need to change the vendor id in the path here
           //truckId
-          return $http.get('http://api.streeteats.com.au/trucks/1/menu');
+          return $http.get('https://evening-scrubland-5159.herokuapp.com/trucks/1/menu');
         },
 
         updateMyMenu: function(item) {
@@ -47,19 +47,19 @@ angular.module('sfeVendorApp').factory('sfeAPI', function($http, $location, cred
           	"price": String(item.price),
           	"truckId": String(item.truckId)
           });
-          return $http.post('http://api.streeteats.com.au/items/' + item.itemId, jsonItem);
+          return $http.post('hhttps://evening-scrubland-5159.herokuapp.com/items/' + item.itemId, jsonItem);
         },
 
         openMyShop: function(trucksession) {
-          return $http.post('http://api.streeteats.com.au/trucksession', trucksession);
+          return $http.post('https://evening-scrubland-5159.herokuapp.com/trucksession', trucksession);
         },
 
         getMyCurrentOrders: function(truckSessionId) {
           ///trucksession/:truckSessionId/activeOrders
-          return $http.get('http://api.streeteats.com.au/trucksession/'+ truckSessionId +'/activeOrders', {cache:false});
+          return $http.get('https://evening-scrubland-5159.herokuapp.com/trucksession/'+ truckSessionId +'/activeOrders', {cache:false});
         },
         progressOrderStatus: function(orderId) {
-          return $http.get('http://api.streeteats.com.au/orders/updatestatus/'+ orderId, {cache:false});
+          return $http.get('https://evening-scrubland-5159.herokuapp.com/updatestatus/'+ orderId, {cache:false});
         }
 
   };
