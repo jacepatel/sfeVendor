@@ -28,7 +28,7 @@ angular.module('sfeVendorApp')
 
     var poll = function() {
       $timeout(function() {
-          sfeAPI.getMyCurrentOrders($rootScope.trucksession.truckSessionId).success(function(data) {
+          sfeAPI.getMyCurrentOrders(truckSessionId).success(function(data) {
             $scope.currentOrders = data.orders;
             debugger;
 
