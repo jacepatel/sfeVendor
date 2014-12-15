@@ -49,7 +49,7 @@ angular.module('sfeVendorApp')
           //alert("Geocoder failed due to: " + status);
         }
       });
-    };
+    }
 
 
 
