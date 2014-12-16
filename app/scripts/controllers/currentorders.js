@@ -19,12 +19,26 @@ angular.module('sfeVendorApp')
 
 
     sfeAPI.getMyCurrentOrders('541').success(function(data) {
+      var curDate = new Date();
+      data.orders.forEach(function (order) {
+        var msDuration = Math.abs(curDate - order.orderTime);
+        order.duration = parseInt(msDuration / 1000 / 60) + ":" + (msDuration / 1000 % 60).toString().substring(0, 2);
+
+      });
+
       $scope.currentOrders = data.orders;
+
     });
 
     var poll = function() {
       $timeout(function() {
           sfeAPI.getMyCurrentOrders('541').success(function(data) {
+            data.orders.forEach(function (order) {
+              var curDate = new Date();
+              var msDuration = Math.abs(curDate - order.orderTime);
+              order.duration = parseInt(msDuration / 1000 / 60) + ":" + (msDuration / 1000 % 60).toString().substring(0, 2);
+
+            });
             $scope.currentOrders = data.orders;
           });
           poll();
@@ -38,24 +52,20 @@ angular.module('sfeVendorApp')
 }).controller('OrderController', function( $scope, sfeAPI) {
 
   //This is called on the ng-click on orders
-  $scope.progressOrder = function(idx) {
+  $scope.progressOrder = function() {
     switch($scope.order.orderStatus) {
     case 1:
-        debugger;
         sfeAPI.progressOrderStatus($scope.order.orderId).success(function(data) {
           $scope.order.errorMessage = data.result;
-          debugger;
           //For this, the order has definitely progressed, its just there may be an error msg
           //Come up with a way to display this on the screen.
         });
         $scope.order.orderStatus = 2;
-        debugger;
         break;
     case 2:
       sfeAPI.progressOrderStatus($scope.order.orderId).success(function(data) {
         $scope.order.errorMessage = data.result;
         $scope.order.orderStatus = 3;
-        $scope.orders.splice(idx, 1);
         //For this, the order has definitely progressed, its just there may be an error msg
         //Come up with a way to display this on the screen.
       });

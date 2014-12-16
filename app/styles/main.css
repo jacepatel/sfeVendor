@@ -74,6 +74,7 @@ body {
 .menu-group-item:first-child {
   border-top-left-radius: 1px;
   border-top-right-radius: 1px;
+  margin-top: 4px;
 }
 .menu-group-item:last-child {
   margin-bottom: 0;
@@ -365,8 +366,10 @@ p {
 }
 
 .displaybubblemenu {
-  padding: 0px;
-  margin-top: 4px;
+  padding: 4px;
+  padding-left: 0;
+  margin-bottom: 20px;
+  margin-top: 0px;
   margin-bottom: 3px;
   margin-right: 12px;
   margin-left: 12px;
@@ -374,6 +377,7 @@ p {
   font-size: 22px;
   font-weight: 500;
   background-color: #d7d7d7;
+  letter-spacing:2px;
 }
 .displaybubblemenu.inactive {
   background-color: #e2cbcb;
@@ -385,7 +389,8 @@ p {
 }
 .displaybubblemenu p {
   margin-bottom: 2px;
-  font-size: 12px;
+  font-size: 11px;
+  padding: 2px;
   font-weight: 200;
   color: #9d5150;
 

@@ -1,32 +1,34 @@
 
 <div class="header">
         <div ng-include src="'partials/header.html'"></div>
-        <h3 class="text-muted">Current Orders</h3>
+        <h3 class="text-muted" style="text-align:center; color:#ffffff">Current Orders</h3>
 </div>
 
 <div id="current-orders">
 	<div style='color: #9d5150;margin-bottom: 2px; margin-right: 0px; margin-left: 0px;'
     ng-repeat="order in currentOrders"
     ng-controller="OrderController"
-    ng-click="progressOrder($index)"
+    ng-click="progressOrder()"
+    ng-hide="order.orderStatus == 3"
     ng-class="{1: 'menu-displaybubble', 2: 'menu-displaybubble-success', 3: 'menu-displaybubble-success'}[order.orderStatus]">
 
     <div id = 'order-div' style='display:table; width:100%'>
       <div id = 'table-row' style='display:table-row;'>
         <div id = 'order-status' style='display:table-cell; width:3%;' class='indicatorbubble'
-        ng-class="{1: 'indicatorbubble', 2: 'indicatorbubble-success', 3: 'indicatorbubble-success'}[order.orderStatus]">
+        ng-class="{1: 'indicatorbubble', 2: 'indicatorbubble-success', 3: 'indicatorbubble-success'}[order.orderStatus]"
+        >
         {{ order.errorMessage }}
         </div>
 
-        <div id = 'order-details' style='display:table-cell; width:20%;'>
-          <div id = 'order-number' class='displaybubblemenu' style='margin-right:20px; padding-top:0px; margin-top:2px; letter-spacing:2px;'>
-            <span style='font-size:8px; padding-top:0px; margin-top:2px; letter-spacing:1px;'>ORDER NUMBER</span><br>
+        <div id = 'order-details' style='display:table-cell; width:20%; padding:0px; margin-top:0px;'>
+          <div id = 'order-number' class='displaybubblemenu' style='margin-right:20px; letter-spacing:2px;'>
+          <p>ORDER NUMBER<br></p>
             {{ order.orderId }}
           </div>
 
-          <div id = 'order-time' class='displaybubblemenu' style='margin-right:20px; padding-top:0px; margin-top:2px; letter-spacing:2px;'>
-            <span style='font-size:8px; padding-top:0px; margin-top:2px;  letter-spacing:1px;'>ORDER PLACED</span><br>
-            0:30
+          <div id = 'order-time' class='displaybubblemenu' style='margin-right:20px; letter-spacing:2px;'>
+            <p>ORDER PLACED<br></p>
+            {{order.duration}}
           </div>
         </div>
 
@@ -36,16 +38,17 @@
             ng-repeat="orderItem in order.orderItems"
             style='background-color: #d7d7d7; text-align: left; font-weight:500; letter-spacing: 1.5px; padding: 5px'
             class = "menu-group-item">{{ orderItem.quantity }} x {{ orderItem.item.name }}
+            <span ng-show=orderItem.glutenFree>(gf)</span>
           </li>
         </ul>
 
       </div>
 
       <div id = 'order-contact-details' style='display:table-cell; width:20%;'>
-        <div id = 'contact-details' class='displaybubblemenu' >
-          <span style='font-size:8px; padding:0px; margin-top:0px;'>CONTACT DETAILS</span><br>
-          <span style='font-size:12px; padding:0px; margin-top:0px;'>{{order.name}}</span><br>
-          <span style='font-size:12px; padding:0px; margin-top:0px;'>{{ order.mobileNumber }}</span>
+        <div id = 'contact-details' class='displaybubblemenu' style='font-size:14px; max-height:100%;'>
+          <p>CONTACT DETAILS<br></p>
+          {{order.name}}<br><br>
+          {{ order.mobileNumber }}
         </div>
       </div>
     </div>
