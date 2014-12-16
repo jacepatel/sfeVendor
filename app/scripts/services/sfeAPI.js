@@ -59,7 +59,7 @@ angular.module('sfeVendorApp').factory('sfeAPI', function($http, $location, cred
           return $http.get('https://evening-scrubland-5159.herokuapp.com/trucksession/'+ truckSessionId +'/activeOrders', {cache:false});
         },
         progressOrderStatus: function(orderId) {
-          return $http.get('https://evening-scrubland-5159.herokuapp.com/updatestatus/'+ orderId, {cache:false});
+          return $http.get('https://evening-scrubland-5159.herokuapp.com/orders/updatestatus/'+ orderId, {cache:false});
         }
 
   };

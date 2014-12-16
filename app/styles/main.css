@@ -52,6 +52,7 @@ body {
   padding-bottom: 1px;
 }
 
+
 /* Custom page footer */
 .footer {
   padding-top: 19px;
@@ -278,6 +279,51 @@ p {
   color: #9d5150;
 }
 /* Main marketing message and sign up button */
+.indicatorbubble {
+  text-align: center;
+  border-bottom: 0px;
+  background-color: #e2cbcb;
+}
+.indicatorbubble .container {
+  max-width: 100%;
+}
+.indicatorbubble-success {
+  text-align: center;
+  border-bottom: 0px;
+  background-color: #89c3c4;
+}
+.indicatorbubble-success .container {
+  max-width: 100%;
+}
+
+.menu-displaybubble-success {
+  padding: 0px;
+  margin-bottom: 12px;
+  color: #9d5150;
+  background-color: #e2cbcb;
+  margin-bottom: 2px;
+  margin-right: 0px;
+  margin-left: 0px;
+}
+.container .menu-displaybubble-success  {
+  border-radius: 1px;
+}
+.menu-displaybubble .container-success  {
+  max-width: 100%;
+}
+.menu-displaybubble{
+  padding: 0px;
+  margin-bottom: 12px;
+  color: #9d5150;
+  background-color: #ffffff;
+}
+.container .menu-displaybubble  {
+  border-radius: 1px;
+}
+.menu-displaybubble .container {
+  max-width: 100%;
+}
+
 .displaybubble {
   text-align: center;
   border-bottom: 1px solid #763c3b;
@@ -287,7 +333,7 @@ p {
   padding: 14px 24px;
 }
 .displaybubble {
-  padding: 6px;
+  padding: 0px;
   margin-bottom: 12px;
   color: #9d5150;
   background-color: #763c3b;
@@ -319,7 +365,8 @@ p {
 }
 
 .displaybubblemenu {
-  padding: 2px;
+  padding: 0px;
+  margin-top: 4px;
   margin-bottom: 3px;
   margin-right: 12px;
   margin-left: 12px;
