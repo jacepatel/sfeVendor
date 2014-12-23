@@ -18,7 +18,7 @@ angular.module('sfeVendorApp')
 
 
 
-    sfeAPI.getMyCurrentOrders('541').success(function(data) {
+    sfeAPI.getMyCurrentOrders($rootScope.trucksession.truckSessionId).success(function(data) {
       var curDate = new Date();
       data.orders.forEach(function (order) {
         var msDuration = Math.abs(curDate - order.orderTime);
@@ -27,6 +27,13 @@ angular.module('sfeVendorApp')
       });
 
       $scope.currentOrders = data.orders;
+
+
+
+
+
+
+
 
     });
 

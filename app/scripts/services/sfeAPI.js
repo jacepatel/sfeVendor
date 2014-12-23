@@ -47,7 +47,7 @@ angular.module('sfeVendorApp').factory('sfeAPI', function($http, $location, cred
           	"price": String(item.price),
           	"truckId": String(item.truckId)
           });
-          return $http.post('hhttps://evening-scrubland-5159.herokuapp.com/items/' + item.itemId, jsonItem);
+          return $http.post('https://evening-scrubland-5159.herokuapp.com/items/' + item.itemId, jsonItem);
         },
 
         openMyShop: function(trucksession) {
